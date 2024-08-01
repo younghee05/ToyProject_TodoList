@@ -9,4 +9,14 @@
         todolist_tb
         values(0, #{content}, #{status}, #{date})
     </insert>
+    <select id="findTodoList" resultType="com.toyproject.todolist.entity.Todo">
+        select
+            todoId,
+            content,
+            status
+        from
+            todolist_tb
+        where
+            date like concat("%", #{date}, "%")
+    </select>
 </mapper>

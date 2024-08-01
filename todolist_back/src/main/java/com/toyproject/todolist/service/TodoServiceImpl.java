@@ -1,10 +1,14 @@
 package com.toyproject.todolist.service;
 
 import com.toyproject.todolist.dto.ReqAddTodoDto;
+import com.toyproject.todolist.dto.RespGetListDto;
 import com.toyproject.todolist.entity.Todo;
 import com.toyproject.todolist.repository.TodoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class TodoServiceImpl implements TodoService{
@@ -20,5 +24,23 @@ public class TodoServiceImpl implements TodoService{
                 .date(reqAddTodoDto.getDate())
                 .build();
         return todoMapper.save(todo);
+    }
+
+    @Override
+    public List<RespGetListDto> findTodoLists(String date) {
+        List<RespGetListDto> dtos = new ArrayList<>();
+        List<Todo> todos = todoMapper.findTodoList(date);
+
+        for (Todo todo : todos) {
+            RespGetListDto dto = RespGetListDto.builder()
+                    .todoId(todo.getTodoId())
+                    .content(todo.getContent())
+                    .status(todo.getStatus())
+                    .build();
+
+            dtos.add(dto);
+        }
+
+        return dtos;
     }
 }
