@@ -42,7 +42,6 @@ export const Input = css`
      
 `;
 
-
 export const ButtonLayout = css`
     box-sizing: border-box;
     width: 80px;
@@ -51,5 +50,25 @@ export const ButtonLayout = css`
     color:#ffffff;
     background-color: #555555;
     cursor: pointer;
+`;
+
+export const InputByLayout = css`
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin: 5px 1200px 0px 0px;
+    height: 50px;
+    *:focus {
+        outline: 0;
+    }
+    
+`;
+
+export const dateInput = css`
+    box-sizing: border-box;
+    margin-left: 5px;
+    border: 1px solid #000000;
+    cursor: pointer;
+
 `;
 

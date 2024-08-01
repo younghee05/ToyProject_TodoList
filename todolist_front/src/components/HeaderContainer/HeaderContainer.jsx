@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from './style';
 import api from '../../apis/instance';
+import { useRecoilState } from 'recoil';
+import { dateStateAtom } from '../atoms/dateAtom';
 
 function HeaderContainer(props) {
+
+    const [ dateState, setDateState ] = useRecoilState(dateStateAtom);
+
     const [ todo, setTodo ] = useState({
         content: "",
         status: 0,
@@ -43,6 +48,11 @@ function HeaderContainer(props) {
         }
         return responseData;
     };
+
+    const handleDateChange = (e) => {
+        setDateState(e.target.value);
+    };
+
     return (
         <div css={s.HeaderContainerLayout}>
 
@@ -52,6 +62,10 @@ function HeaderContainer(props) {
                 <input css={s.Input} type="text" name='content' value={todo.content} onChange={handleInputChange} onKeyDown={handleInputKeyDown}/>
                 <button css={s.ButtonLayout} onClick={handleAddClick}>추가</button>
             </div>
+        </div>
+
+        <div css={s.InputByLayout}>
+            <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
         </div>
         
     </div>

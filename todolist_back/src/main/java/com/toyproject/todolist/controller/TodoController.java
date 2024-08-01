@@ -5,10 +5,7 @@ import com.toyproject.todolist.service.TodoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -20,5 +17,10 @@ public class TodoController {
     @PostMapping("/todo")
     public ResponseEntity<?> addTodo(@RequestBody ReqAddTodoDto reqAddTodoDto) {
         return ResponseEntity.ok().body(todoService.addTodo(reqAddTodoDto));
+    }
+
+    @GetMapping("/todolist/{date}")
+    public ResponseEntity<?> searchTodo(@PathVariable String date) {
+        return ResponseEntity.ok().body(todoService.findTodoLists(date));
     }
 }
