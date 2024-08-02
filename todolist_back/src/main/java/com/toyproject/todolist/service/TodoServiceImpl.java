@@ -43,4 +43,13 @@ public class TodoServiceImpl implements TodoService{
 
         return dtos;
     }
+    @Override
+    public int deleteTodo(int todoId) {
+        return todoMapper.delete(todoId);
+    }
+
+    @Override
+    public int updateTodoStatus(int todoId) {
+        return todoMapper.updateStatus(todoId);
+    }
 }

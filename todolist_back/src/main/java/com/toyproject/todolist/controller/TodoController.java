@@ -23,4 +23,14 @@ public class TodoController {
     public ResponseEntity<?> searchTodo(@PathVariable String date) {
         return ResponseEntity.ok().body(todoService.findTodoLists(date));
     }
+
+    @DeleteMapping("/todo/{todoId}")
+    public ResponseEntity<?> deleteTodo(@PathVariable int todoId) {
+        return ResponseEntity.ok().body(todoService.deleteTodo(todoId));
+    }
+
+    @PutMapping("/todo/{todoId}/status")
+    public ResponseEntity<?> updateTodoStatus(@PathVariable int todoId) {
+        return ResponseEntity.ok().body(todoService.updateTodoStatus(todoId));
+    }
 }
