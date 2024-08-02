@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
+import api from '../../apis/instance';
+import ReactModal from 'react-modal';
 
 function ListContainer({ todoList, getTodoList, title }) {
 
