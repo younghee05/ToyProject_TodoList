@@ -51,6 +51,7 @@ function HeaderContainer(props) {
 
     const handleDateChange = (e) => {
         setDateState(e.target.value);
+        
     };
 
     return (

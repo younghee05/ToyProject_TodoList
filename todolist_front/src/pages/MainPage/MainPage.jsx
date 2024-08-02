@@ -15,7 +15,7 @@ function MainPage(props) {
 
     useEffect(() => {
         getTodoList();
-    }, []);
+    }, [dateState]);
 
     const getTodoList = async () => {
         let responseDate = null; // responsDate 의 값을 바꿀 예정이기 때문에 let을 사용 / 초기 null로 설정
@@ -23,6 +23,7 @@ function MainPage(props) {
         try {
             responseDate = await api.get(`/todolist/${dateState}`);
             setTodoList(responseDate.data);
+            
 
         } catch (error) {
             console.error(error);
