@@ -11,4 +11,6 @@ public interface TodoMapper {
     List<Todo> findTodoList(String date);
     int delete(int todoId);
     int updateStatus(int todoId);
+    int updateTodoContent(Todo todo);
+    String getTodo(int todoId);
 }
