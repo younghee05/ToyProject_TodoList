@@ -19,7 +19,7 @@ function ListContainer({ todoList, getTodoList, title }) {
        
         if(isDelete){
             try {
-                const response = await api.delete(`/todo/${e.target.name}`);
+                const response = await api.delete(`/todo/${e.currentTarget.getAttribute('name')}`);
                 console.log(response);
                 getTodoList();
     
@@ -59,12 +59,13 @@ function ListContainer({ todoList, getTodoList, title }) {
     }
 
     const handleUpdateClick = async(e) => {
-        await getTodo(e.target.name);
+        const id = e.currentTarget.getAttribute('name');
+        getTodo(id);
         setModalOpen(true);
         setContent (todo => {
             return {
                 ...todo,
-                todoId: e.target.name
+                todoId: id
             }
             
         })
