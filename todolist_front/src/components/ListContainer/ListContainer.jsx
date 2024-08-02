@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import * as s from "./style";
 import api from '../../apis/instance';
 import ReactModal from 'react-modal';
+import { MdDelete } from "react-icons/md";
+import { MdModeEdit } from "react-icons/md";
 
 function ListContainer({ todoList, getTodoList, title }) {
 
@@ -141,8 +143,8 @@ function ListContainer({ todoList, getTodoList, title }) {
                         </div>
 
                         <div css={s.buttonLayout}>
-                            <button css={s.todoUpdateButton} name={todo.todoId} onClick={handleUpdateClick}>수정</button>
-                            <button css={s.todoDeleteButton} name={todo.todoId} onClick={handleDeleteClick}>삭제</button>
+                            <MdModeEdit size={20} css={s.todoUpdateButton} name={todo.todoId} onClick={handleUpdateClick}></MdModeEdit>
+                            <MdDelete size={20} css={s.todoDeleteButton} name={todo.todoId} onClick={handleDeleteClick}></MdDelete>
                         </div>
                     </div>
                 )
