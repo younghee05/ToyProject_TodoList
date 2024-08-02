@@ -9,4 +9,6 @@ import java.util.List;
 public interface TodoMapper {
     int save(Todo todo);
     List<Todo> findTodoList(String date);
+    int delete(int todoId);
+    int updateStatus(int todoId);
 }

@@ -19,4 +19,21 @@
         where
             date like concat("%", #{date}, "%")
     </select>
+
+    <delete id="delete" parameterType="int">
+        delete from
+        todolist_tb
+        where
+        todoId = #{todoId}
+    </delete>
+
+    <update id="updateStatus" parameterType="int">
+        update
+        todolist_tb
+        set
+        status = not status
+        where
+        todoId = #{todoId}
+
+    </update>
 </mapper>
