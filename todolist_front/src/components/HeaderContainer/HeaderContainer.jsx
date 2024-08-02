@@ -6,6 +6,7 @@ import { useRecoilState } from 'recoil';
 import { dateStateAtom } from '../atoms/dateAtom';
 import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
 
 function HeaderContainer({ getTodoList }) {
 
@@ -14,7 +15,7 @@ function HeaderContainer({ getTodoList }) {
     const [ todo, setTodo ] = useState({
         content: "",
         status: 0,
-        date: ""
+        date: dateState
     });
 
     const handleInputChange = (e) => {
@@ -56,9 +57,25 @@ function HeaderContainer({ getTodoList }) {
         
     };
 
-    const handleNextArrowClick = () => {
-        const date = new Date(dateState);
-        console.log(date);
+    const handleaddArrowOnClick = () => {
+        
+        setDateState(dateState => {
+            const date = new Date(dateState);
+            date.setMonth(date.getMonth() + 1);
+            const newdate = date.getFullYear() + "-" + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1));
+            // console.log(newDate)
+            return newdate;
+        })
+    }
+
+    const handleArrowOnClick = () => {
+        setDateState(dateState => {
+            const date = new Date(dateState);
+            date.setMonth(date.getMonth() - 1);
+            const newdate = date.getFullYear() + "-" + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1));
+            // console.log(newDate)
+            return newdate;
+        })
     }
 
     return (
@@ -88,8 +105,9 @@ function HeaderContainer({ getTodoList }) {
         </div>
 
         <div css={s.InputByLayout}>
+            <FaArrowAltCircleLeft onClick={handleArrowOnClick}/>
             <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
-            <MdOutlineArrowForwardIos onClick={handleNextArrowClick}/>
+            <FaArrowAltCircleRight onClick={handleaddArrowOnClick}/>
         </div>
         
     </div>

@@ -21,10 +21,11 @@
     </select>
 
     <delete id="delete" parameterType="int">
-        delete from
-        todolist_tb
+        delete
+        from
+            todolist_tb
         where
-        todoId = #{todoId}
+            todoId = #{todoId}
     </delete>
 
     <update id="updateStatus" parameterType="int">
