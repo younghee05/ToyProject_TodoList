@@ -4,7 +4,7 @@ export const containerBox = css`
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    margin: 20px 30px 20px 20px;
+    margin-right: 40px;
     width: 400px;
     height: 700px;
     border: 2px solid #686363;
@@ -17,7 +17,7 @@ export const container = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 0px 0px 10px 0px;
+    margin: 0p 0px 10px 0px;
     width: 100%;
     border-bottom: 2px solid #dbdbdb;
 `;

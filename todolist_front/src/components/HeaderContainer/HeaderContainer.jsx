@@ -4,9 +4,12 @@ import * as s from './style';
 import api from '../../apis/instance';
 import { useRecoilState } from 'recoil';
 import { dateStateAtom } from '../atoms/dateAtom';
-import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { BsPencilSquare } from "react-icons/bs";
-import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from 'react-icons/fa';
+import { LuPlus } from "react-icons/lu";
+import { TiPlus } from "react-icons/ti";
+import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
+
 
 function HeaderContainer({ getTodoList }) {
 
@@ -90,24 +93,25 @@ function HeaderContainer({ getTodoList }) {
                     name='date' 
                     onChange={handleInputChange}
                 />
-               
-               <label css={s.fontColor}>Todo</label>
-                <input css={s.Input} 
-                    type="text" name='content' 
-                    value={todo.content} 
-                    onChange={handleInputChange} 
-                    onKeyDown={handleInputKeyDown}
-                    placeholder='입력하세요'
-                />
+               <div css={s.addInputLayout}>
+                <label css={s.fontColor}>Todo</label>
+                    <input css={s.Input} 
+                        type="text" name='content' 
+                        value={todo.content} 
+                        onChange={handleInputChange} 
+                        onKeyDown={handleInputKeyDown}
+                        placeholder='입력하세요'
+                    />
 
-                <BsPencilSquare css={s.ButtonLayout} onClick={handleAddClick}>추가</BsPencilSquare>
+                    <TiPlus css={s.ButtonLayout} onClick={handleAddClick}>추가</TiPlus>
+               </div>
             </div>
         </div>
 
         <div css={s.InputByLayout}>
-            <FaArrowAltCircleLeft onClick={handleArrowOnClick}/>
+            <IoIosArrowBack size={50} css={s.ArrowLayout} onClick={handleArrowOnClick}/>
             <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
-            <FaArrowAltCircleRight onClick={handleaddArrowOnClick}/>
+            <IoIosArrowForward size={50} css={s.ArrowLayout} onClick={handleaddArrowOnClick}/>
         </div>
         
     </div>

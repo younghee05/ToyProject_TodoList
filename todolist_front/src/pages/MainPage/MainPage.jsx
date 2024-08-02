@@ -31,13 +31,13 @@ function MainPage(props) {
     }
     return (
         <div css={s.MainPageLayout}>
-        <HeaderContainer getTodoList={getTodoList} />
-        <div css={s.listContainerLayout}>
-            <ListContainer todoList={todoList} getTodoList={getTodoList} title={"전체"} />
-            <ListContainer todoList={todoList.filter(todo => todo.status === 0)} getTodoList={getTodoList} title={"미완료"}/>
-            <ListContainer todoList={todoList.filter(todo => todo.status === 1)} getTodoList={getTodoList} title={"완료"}/>
+            <HeaderContainer getTodoList={getTodoList} />
+            <div css={s.listContainerLayout}>
+                <ListContainer todoList={todoList} getTodoList={getTodoList} title={"전체"} />
+                <ListContainer todoList={todoList.filter(todo => todo.status === 0)} getTodoList={getTodoList} title={"미완료"}/>
+                <ListContainer todoList={todoList.filter(todo => todo.status === 1)} getTodoList={getTodoList} title={"완료"}/>
+            </div>
         </div>
-    </div>
     );
 }
 
