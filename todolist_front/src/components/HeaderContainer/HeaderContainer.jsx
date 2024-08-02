@@ -5,7 +5,7 @@ import api from '../../apis/instance';
 import { useRecoilState } from 'recoil';
 import { dateStateAtom } from '../atoms/dateAtom';
 
-function HeaderContainer(props) {
+function HeaderContainer({ getTodoList }) {
 
     const [ dateState, setDateState ] = useRecoilState(dateStateAtom);
 
@@ -16,17 +16,11 @@ function HeaderContainer(props) {
     });
 
     const handleInputChange = (e) => {
-        const today = new Date();
-        const year = today.getFullYear();
-        const temp = today.getMonth() + 1;
-        const month = temp -10 < 0 ? "0" + temp : temp;
-        const date = today.getDate();
         
         setTodo(todo => {
             return {
                 ...todo,
-                [e.target.name]: e.target.value,
-                date: `${year}-${month}-${date}`
+                [e.target.name]: e.target.value
             }
         })
     };
@@ -43,6 +37,12 @@ function HeaderContainer(props) {
             const response = await api.post("/todo", todo);
             responseData = response.data;
             console.log(responseData);
+            getTodoList();
+            setTodo({
+                content: "",
+                status: 0,
+                date: ""
+            });
         } catch (error) {
             console.error(error);
         }
@@ -60,6 +60,7 @@ function HeaderContainer(props) {
         <div css={s.TitleLayout}>
             <h1 css={s.h1Title}><span>📋 </span>TODOLIST</h1>
             <div css={s.InputLayout}>
+                <input css={s.addDateInput} type="date" name='date' onChange={handleInputChange}/>
                 <input css={s.Input} type="text" name='content' value={todo.content} onChange={handleInputChange} onKeyDown={handleInputKeyDown}/>
                 <button css={s.ButtonLayout} onClick={handleAddClick}>추가</button>
             </div>

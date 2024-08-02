@@ -117,6 +117,7 @@ function ListContainer({ todoList, getTodoList, title }) {
                 }}
                 isOpen={isModalOpen}
                 onRequestClose={closeModal}
+                ariaHideApp={false}
             >
                 <div css={s.modalLayout}>
                     <h2 css={s.modalH2Title}>ToDo 수정</h2>

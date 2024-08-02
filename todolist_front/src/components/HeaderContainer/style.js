@@ -32,6 +32,12 @@ export const InputLayout = css`
     input:focus {outline:1px solid #000000;}
 `;
 
+export const addDateInput = css` 
+    box-sizing: border-box;
+    margin-right: 5px;
+    width: 120px;
+`;
+
 export const Input = css`
     box-sizing: border-box;
     width: 100%;
