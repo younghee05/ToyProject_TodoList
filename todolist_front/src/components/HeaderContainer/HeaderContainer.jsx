@@ -4,6 +4,8 @@ import * as s from './style';
 import api from '../../apis/instance';
 import { useRecoilState } from 'recoil';
 import { dateStateAtom } from '../atoms/dateAtom';
+import { MdOutlineArrowForwardIos } from "react-icons/md";
+import { BsPencilSquare } from "react-icons/bs";
 
 function HeaderContainer({ getTodoList }) {
 
@@ -54,20 +56,40 @@ function HeaderContainer({ getTodoList }) {
         
     };
 
+    const handleNextArrowClick = () => {
+        const date = new Date(dateState);
+        console.log(date);
+    }
+
     return (
         <div css={s.HeaderContainerLayout}>
 
         <div css={s.TitleLayout}>
             <h1 css={s.h1Title}><span>📋 </span>TODOLIST</h1>
             <div css={s.InputLayout}>
-                <input css={s.addDateInput} type="date" name='date' onChange={handleInputChange}/>
-                <input css={s.Input} type="text" name='content' value={todo.content} onChange={handleInputChange} onKeyDown={handleInputKeyDown}/>
-                <button css={s.ButtonLayout} onClick={handleAddClick}>추가</button>
+              
+                <input css={s.addDateInput} 
+                    type="date" 
+                    name='date' 
+                    onChange={handleInputChange}
+                />
+               
+               <label css={s.fontColor}>Todo</label>
+                <input css={s.Input} 
+                    type="text" name='content' 
+                    value={todo.content} 
+                    onChange={handleInputChange} 
+                    onKeyDown={handleInputKeyDown}
+                    placeholder='입력하세요'
+                />
+
+                <BsPencilSquare css={s.ButtonLayout} onClick={handleAddClick}>추가</BsPencilSquare>
             </div>
         </div>
 
         <div css={s.InputByLayout}>
             <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
+            <MdOutlineArrowForwardIos onClick={handleNextArrowClick}/>
         </div>
         
     </div>

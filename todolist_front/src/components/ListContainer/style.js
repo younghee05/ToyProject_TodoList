@@ -60,11 +60,8 @@ export const buttonLayout = css`
 
 export const todoUpdateButton = css`
     box-sizing: border-box;
-    margin-right: 15px;
-    border: 1px solid #000000;
-    color: #ffffff;
-    border-radius: 10px;
-    background-color: #000000;
+    margin-right: 20px;
+    color: #000000;
     cursor: pointer;
 
 `;
@@ -72,10 +69,7 @@ export const todoUpdateButton = css`
 export const todoDeleteButton = css`
     box-sizing: border-box;
     margin-right: 5px;
-    border: 1px solid #000000;
-    color: #ffffff;
-    border-radius: 10px;
-    background-color: #000000;
+    color: #000000;
     cursor: pointer;
 `;
 
