@@ -9,16 +9,19 @@ import api from "../../apis/instance";
 
 
 function MainPage(props) {
+
+    // 상태(useState)
     const [ dateState, setDateState ] = useRecoilState(dateStateAtom);
     
-    const [ todoList, setTodoList ] = useState([]); // list -> 배열로 초기설정
+    const [ todoList, setTodoList ] = useState([]);
 
+    // getTodoList 
     useEffect(() => {
         getTodoList();
     }, [dateState]);
 
     const getTodoList = async () => {
-        let responseDate = null; // responsDate 의 값을 바꿀 예정이기 때문에 let을 사용 / 초기 null로 설정
+        let responseDate = null;
         
         try {
             responseDate = await api.get(`/todolist/${dateState}`);
@@ -29,10 +32,13 @@ function MainPage(props) {
             console.error(error);
         }
     }
+
     return (
+        // 한 화면에 두 공간으로 나눔 (HeaderContainer & ListContainer)
         <div css={s.MainPageLayout}>
             <HeaderContainer getTodoList={getTodoList} />
             <div css={s.listContainerLayout}>
+                {/* ListContainer 공간을 3개로 나눔 */}
                 <ListContainer todoList={todoList} getTodoList={getTodoList} title={"전체"} />
                 <ListContainer todoList={todoList.filter(todo => todo.status === 0)} getTodoList={getTodoList} title={"미완료"}/>
                 <ListContainer todoList={todoList.filter(todo => todo.status === 1)} getTodoList={getTodoList} title={"완료"}/>

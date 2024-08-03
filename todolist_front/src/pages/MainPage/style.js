@@ -1,5 +1,6 @@
-import { css } from "@emotion/react";
+    import { css } from "@emotion/react";
 
+// main 화면에 전체적인 틀을 잡아줌 (HeaderContainer)
 export const MainPageLayout = css`
     box-sizing: border-box;
     display: flex;
@@ -11,6 +12,7 @@ export const MainPageLayout = css`
 
 `;
 
+// ListContainer의 전체적인 틀을 잡아줌 
 export const listContainerLayout = css`
     box-sizing: border-box;
     display: flex;
