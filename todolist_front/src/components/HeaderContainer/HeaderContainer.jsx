@@ -13,6 +13,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 function HeaderContainer({ getTodoList }) {
 
+    // 상태
     const [ dateState, setDateState ] = useRecoilState(dateStateAtom);
 
     const [ todo, setTodo ] = useState({
@@ -21,6 +22,7 @@ function HeaderContainer({ getTodoList }) {
         date: dateState
     });
 
+    // 날짜를 바꾸고 입력하였을 때 추가 되도록 하게 설정
     const handleInputChange = (e) => {
         
         setTodo(todo => {
@@ -31,12 +33,14 @@ function HeaderContainer({ getTodoList }) {
         })
     };
 
+    // 엔터를 눌렀을 때 추가 되겠끔
     const handleInputKeyDown = (e) => {
         if(e.keyCode === 13) {
             handleAddClick();
         }
     };
 
+    // 추가버튼을 클릭하면 추가 되겠끔
     const handleAddClick = async () => {
         let responseData = null;
         try {
@@ -55,11 +59,7 @@ function HeaderContainer({ getTodoList }) {
         return responseData;
     };
 
-    const handleDateChange = (e) => {
-        setDateState(e.target.value);
-        
-    };
-
+    // 화살표를 눌렀을 때 날짜가 바뀌면서 달마다 리스트 뜨게 해주는 기능 
     const handleaddArrowOnClick = () => {
         
         setDateState(dateState => {
@@ -70,6 +70,11 @@ function HeaderContainer({ getTodoList }) {
             return newdate;
         })
     }
+    
+    const handleDateChange = (e) => {
+        setDateState(e.target.value);
+        
+    };
 
     const handleArrowOnClick = () => {
         setDateState(dateState => {
@@ -84,37 +89,42 @@ function HeaderContainer({ getTodoList }) {
     return (
         <div css={s.HeaderContainerLayout}>
 
-        <div css={s.TitleLayout}>
-            <h1 css={s.h1Title}><span>📋 </span>TODOLIST</h1>
-            <div css={s.InputLayout}>
-              
-                <input css={s.addDateInput} 
-                    type="date" 
-                    name='date' 
-                    onChange={handleInputChange}
-                />
-               <div css={s.addInputLayout}>
-                <label css={s.fontColor}>Todo</label>
-                    <input css={s.Input} 
-                        type="text" name='content' 
-                        value={todo.content} 
-                        onChange={handleInputChange} 
-                        onKeyDown={handleInputKeyDown}
-                        placeholder='입력하세요'
+            <div css={s.TitleLayout}>
+                {/* TODOLIST의 메인 제목 */}
+                <h1 css={s.h1Title}><span>📋 </span>TODOLIST</h1>
+                <div css={s.InputLayout}>
+
+                    {/* 날짜를 바꾸면 입력 되겠끔 */}
+                    <input css={s.addDateInput} 
+                        type="date" 
+                        name='date' 
+                        onChange={handleInputChange}
                     />
+                    {/* 입력창 */}
+                    <div css={s.addInputLayout}>
+                        <label css={s.fontColor}>Todo</label>
+                            <input css={s.inputlayout} 
+                                type="text" name='content' 
+                                value={todo.content} 
+                                onChange={handleInputChange} 
+                                onKeyDown={handleInputKeyDown}
+                                placeholder='입력하세요'
+                            />
 
-                    <TiPlus css={s.ButtonLayout} onClick={handleAddClick}>추가</TiPlus>
-               </div>
+                            {/* 추가 버튼을 누르면 데이터 값이 추가 되겠끔 */}
+                            <TiPlus css={s.ButtonLayout} onClick={handleAddClick}>추가</TiPlus>
+                    </div>
+                </div>
             </div>
-        </div>
 
-        <div css={s.InputByLayout}>
-            <IoIosArrowBack size={50} css={s.ArrowLayout} onClick={handleArrowOnClick}/>
-            <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
-            <IoIosArrowForward size={50} css={s.ArrowLayout} onClick={handleaddArrowOnClick}/>
-        </div>
+            {/* 화살표를 누를 때 달마다 조회 되겠끔 */}
+            <div css={s.InputByLayout}>
+                <IoIosArrowBack size={50} css={s.ArrowLayout} onClick={handleArrowOnClick}/>
+                <input css={s.dateInput} type="month" value={dateState} onChange={handleDateChange}/>
+                <IoIosArrowForward size={50} css={s.ArrowLayout} onClick={handleaddArrowOnClick}/>
+            </div>
         
-    </div>
+        </div>
  
     );
 }
