@@ -33,11 +33,10 @@ function ListContainer({ todoList, getTodoList, title }) {
         try {
             const response = await api.put(`/todo/${e.target.id}/status`);
             
-        } catch (e) {
+        } catch(e) {
             console.error(e);
         }
         getTodoList();
-      
     }
 
     const closeModal = () => {
@@ -132,7 +131,6 @@ function ListContainer({ todoList, getTodoList, title }) {
                 </div>
             </ReactModal>
             <h2 css={s.h2Title}>{title}</h2>   
-            
             {
                 todoList.map(todo => 
                     <div key={todo.todoId} css={s.container}>
