@@ -4,8 +4,6 @@ import * as s from './style';
 import api from '../../apis/instance';
 import { useRecoilState } from 'recoil';
 import { dateStateAtom } from '../atoms/dateAtom';
-import { BsPencilSquare } from "react-icons/bs";
-import { LuPlus } from "react-icons/lu";
 import { TiPlus } from "react-icons/ti";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
@@ -18,7 +16,6 @@ function HeaderContainer({ getTodoList }) {
 
     const [ todo, setTodo ] = useState({
         content: "",
-        status: 0,
         date: dateState
     });
 
@@ -44,6 +41,10 @@ function HeaderContainer({ getTodoList }) {
 
     // 추가버튼을 클릭하면 추가 되겠끔
     const handleAddClick = async () => {
+        if (todo.content.trim() === "") {
+            alert("빈 값은 입력할 수 없습니다.")
+            return;
+        }
         let responseData = null;
         try {
             const response = await api.post("/todo", todo);
@@ -53,8 +54,7 @@ function HeaderContainer({ getTodoList }) {
             setTodo(todo => {
                 return {
                     ...todo,
-                    content: "",
-                    status: 0
+                    content: ""
                 }
             });
         } catch (error) {
@@ -98,8 +98,9 @@ function HeaderContainer({ getTodoList }) {
 
                     {/* 날짜를 바꾸면 입력 되겠끔 */}
                     <input css={s.addDateInput} 
-                        type="date" 
-                        name='date' 
+                        type="month" 
+                        name='date'
+                        value={todo.date} 
                         onChange={handleInputChange}
                     />
                     {/* 입력창 */}

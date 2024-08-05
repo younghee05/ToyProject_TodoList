@@ -7,7 +7,7 @@
     <insert id="save" parameterType="com.toyproject.todolist.entity.Todo">
         insert into
         todolist_tb
-        values(0, #{content}, #{status}, #{date})
+        values(0, #{content}, 0, #{date})
     </insert>
     <select id="findTodoList" resultType="com.toyproject.todolist.entity.Todo">
         select

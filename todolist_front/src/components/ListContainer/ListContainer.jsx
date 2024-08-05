@@ -32,7 +32,7 @@ function ListContainer({ todoList, getTodoList, title }) {
             }
         }
     };
-
+ 
     // 체크박스에 체크 했을 때 다른 칸으로 옮겨 갈 수 있게 해주는 기능 
     const handleCheckChange = async (e) => {
         try {
@@ -76,6 +76,10 @@ function ListContainer({ todoList, getTodoList, title }) {
 
     // 모달창에 완료버튼
     const handleCompleteClick = async() => {
+        if (content.content.trim() === "") {
+            alert("빈 값은 입력할 수 없습니다.")
+            return;
+        }
         console.log(content);
         try {
             const response = await api.put("/todo", content);
@@ -146,6 +150,7 @@ function ListContainer({ todoList, getTodoList, title }) {
                         onChange={handleInputChange} 
                         onKeyDown={handleInputKeyDown} 
                         value={content.content}
+                        autoFocus
                     />
 
                     {/* 모달창의 완료 & 취소 버튼 */}
