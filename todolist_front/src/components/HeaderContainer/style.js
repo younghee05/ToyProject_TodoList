@@ -122,14 +122,11 @@ export const InputByLayout = css`
     justify-content: center;
     margin: 0px 890px 10px 0px;
     height: 50px;
-    *:focus {
-        outline: 0;
-    }
-    
 `;
 
 export const dateInput = css`
     box-sizing: border-box;
+    position: relative;
     color: #ebebeb;
     font-size: 30px;
     border: none;
@@ -141,7 +138,18 @@ export const dateInput = css`
         font-weight: normal;
         font-style: normal;
     }
+    
+    & *:focus {
+        outline: 0;
+    }
 
+    &::-webkit-calendar-picker-indicater {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
 `;
 
 // date 넘결 갈때 쓰이는 화살표 디자인

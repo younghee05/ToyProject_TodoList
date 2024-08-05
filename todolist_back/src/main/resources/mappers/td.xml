@@ -40,19 +40,19 @@
 
     <update id="updateTodoContent" parameterType="com.toyproject.todolist.entity.Todo">
         update
-        todolist_tb
+            todolist_tb
         set
-        content = #{content}
+            content = #{content}
         where
-        todoId = #{todoId}
+            todoId = #{todoId}
     </update>
 
     <select id="getTodo" resultType="java.lang.String">
         select
-        content
+            content
         from
-        todolist_tb
+            todolist_tb
         where
-        todoId = #{todoId}
+            todoId = #{todoId}
     </select>
 </mapper>
