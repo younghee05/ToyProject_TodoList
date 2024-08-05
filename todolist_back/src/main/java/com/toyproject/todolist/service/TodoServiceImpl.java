@@ -21,7 +21,6 @@ public class TodoServiceImpl implements TodoService{
     public int addTodo(ReqAddTodoDto reqAddTodoDto) {
         Todo todo = Todo.builder()
                 .content(reqAddTodoDto.getContent())
-                .status(reqAddTodoDto.getStatus())
                 .date(reqAddTodoDto.getDate())
                 .build();
         return todoMapper.save(todo);

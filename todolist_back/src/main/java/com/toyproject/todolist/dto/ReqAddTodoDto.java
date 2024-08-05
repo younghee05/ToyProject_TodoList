@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class ReqAddTodoDto {
     private String content;
-    private int status;
     private String Date;
 
 }
