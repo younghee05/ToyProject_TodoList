@@ -31,6 +31,8 @@ function HeaderContainer({ getTodoList }) {
                 [e.target.name]: e.target.value
             }
         })
+
+        console.log(todo);
     };
 
     // 엔터를 눌렀을 때 추가 되겠끔
@@ -48,10 +50,12 @@ function HeaderContainer({ getTodoList }) {
             responseData = response.data;
             console.log(responseData);
             getTodoList();
-            setTodo({
-                content: "",
-                status: 0,
-                date: ""
+            setTodo(todo => {
+                return {
+                    ...todo,
+                    content: "",
+                    status: 0
+                }
             });
         } catch (error) {
             console.error(error);
@@ -66,7 +70,6 @@ function HeaderContainer({ getTodoList }) {
             const date = new Date(dateState);
             date.setMonth(date.getMonth() + 1);
             const newdate = date.getFullYear() + "-" + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1));
-            // console.log(newDate)
             return newdate;
         })
     }
@@ -81,7 +84,6 @@ function HeaderContainer({ getTodoList }) {
             const date = new Date(dateState);
             date.setMonth(date.getMonth() - 1);
             const newdate = date.getFullYear() + "-" + ((date.getMonth() + 1) >= 10 ? (date.getMonth() + 1) : "0" + (date.getMonth() + 1));
-            // console.log(newDate)
             return newdate;
         })
     }

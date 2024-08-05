@@ -27,18 +27,15 @@ function MainPage(props) {
             responseDate = await api.get(`/todolist/${dateState}`);
             setTodoList(responseDate.data);
             
-
         } catch (error) {
             console.error(error);
         }
     }
 
     return (
-        // 한 화면에 두 공간으로 나눔 (HeaderContainer & ListContainer)
         <div css={s.MainPageLayout}>
             <HeaderContainer getTodoList={getTodoList} />
             <div css={s.listContainerLayout}>
-                {/* ListContainer 공간을 3개로 나눔 */}
                 <ListContainer todoList={todoList} getTodoList={getTodoList} title={"전체"} />
                 <ListContainer todoList={todoList.filter(todo => todo.status === 0)} getTodoList={getTodoList} title={"미완료"}/>
                 <ListContainer todoList={todoList.filter(todo => todo.status === 1)} getTodoList={getTodoList} title={"완료"}/>
